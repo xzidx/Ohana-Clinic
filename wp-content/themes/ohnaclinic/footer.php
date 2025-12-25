@@ -30,6 +30,7 @@
             <a href="#">Privacy Policy</a> | 
             <a href="#">What We do</a>
         </div>
+        <div class="h1">Weclome to my </div>
         <div class="bottom-copyright">
             © 2025 YourWebsiteName. All rights reserved.
         </div>

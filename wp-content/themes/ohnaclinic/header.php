@@ -13,7 +13,8 @@
 
 
 <header class="header">
-    <div class="header-img"><img src="http://clinic_website.test/wp-content/uploads/2025/12/clinic_logo.jpg" alt=""></div>
+    <img src="" alt="">
+    <div class="header-img"><img src="http://clinic_website.test/wp-content/uploads/2025/12/clinic_logo-Photoroom.png" alt=""></div>
     <!-- <h1 class="site-title"><?php bloginfo('name'); ?></h1> -->
     <div class="icon-space"> 
         

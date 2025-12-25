@@ -1,11 +1,26 @@
 /* =======================
 Header
 ======================= */
+body {
+    margin: 0;
+    padding: 0;
+}
 .header {
     display: flex;
     align-items: center;
     padding: 0;
-    gap: 50px; /* space between title and menu */
+    display: flex;
+    align-items: center;
+    /* padding: 20px 50px; */
+    /* gap: 50px; */
+
+    /* Background image for the entire header */
+    background-image: url('http://clinic_website.test/wp-content/uploads/2025/12/life.png') ;
+    background-size: cover;       /* scale to cover header */
+    background-position: center;  /* center image */
+    background-repeat: no-repeat;
+    height: 100px;         
+    
 }
 
 .header h1 {
@@ -20,7 +35,7 @@ Header
     object-fit: contain;
     box-sizing: border-box;
     padding: 0;
-    margin: 0;
+    margin-left:0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,8 +53,7 @@ Menu Container
 .menu {
     display: flex;
     align-items: center;
-    margin-left: 220px;
-    margin-top: 50px;
+    margin-left: 400px;
 }
 
 .menu ul {
@@ -54,7 +68,7 @@ Menu Container
 /* Menu links */
 .menu li a {
     font-size: 20px;
-    color: #222;
+    color: #ffffff;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
@@ -70,8 +84,8 @@ Menu Container
 /* Active page (WordPress) */
 .menu li.current-menu-item a,
 .menu li.current_page_item a {
-    border-bottom-color: #2ecc71;
-    color: #2ecc71;
+    border-bottom-color: #00ddff;
+    color: #00ddff;
 }
 
 /* Focus (accessibility) */
