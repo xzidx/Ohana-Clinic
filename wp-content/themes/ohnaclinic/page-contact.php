@@ -1,10 +1,9 @@
 <?php
 /*
-Template Name: About Page
+Template Name: Contact Page
 */
 get_header();
 ?>
-
 
 
 <?php get_footer(); ?>

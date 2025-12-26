@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?>>
     
 <head>
-    <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <?php wp_head(); ?>
     
@@ -29,6 +29,11 @@
         ]); 
         ?>
         <!-- <i class="fa-solid fa-list phone-only" id="menu-toggle"></i> -->
+         <div class="online-call">
+                <a href=""><i class="fa-solid fa-headset phone-only-call"></i></a>
+               <a href=""> <h1><i class="fa-solid fa-calendar-days phone-only"></i> Online reservation</h1>
+                </a>
+         </div>
     </div>
 </header>
 
@@ -41,13 +46,6 @@
 
 
 
-<script>
-const phoneToggle = document.querySelector('.phone-only');
-const menu = document.querySelector('.menu');
-
-phoneToggle.addEventListener('click', () => {
-    menu.classList.toggle('show');
-});
 
 </script>
 
