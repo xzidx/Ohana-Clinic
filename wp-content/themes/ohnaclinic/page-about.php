@@ -8,6 +8,7 @@ get_header();
 
 
 <main>
+   <div class="more-space"></div>
    <div class="container">
                   <div class="about-img">
                   <img src="http://clinic_website.test/wp-content/uploads/2025/12/surgin-room-scaled.jpeg" alt="">
