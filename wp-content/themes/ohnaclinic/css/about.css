@@ -1,0 +1,668 @@
+.about-img{
+    width: 100%;
+    height: 350px;
+    /* background-color: red; */
+}
+.about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hero-text h2{
+    text-align: center;
+    color: #222;
+    font-size: 36px;
+}
+.container-2{
+    margin: auto;
+}
+.title h3{
+    padding: 0 0 0 80px;
+    font-size: 32px;
+    /* background-color: #2ecc71; */
+}
+.paragrap{
+   
+    align-items: center;
+    /* background-color: blue; */
+    padding-left: 50px;
+    text-indent: 30px;
+    font-size: 26px;
+}
+.title2 h3{
+    padding: 0 0 0 80px;
+    font-size: 32px;
+    /* background-color: #2ecc71; */
+}
+.box{
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-between;
+}
+.box1{
+
+    height: auto;
+    width: 50%;
+    text-align: center;
+}
+.box1 span{
+    font-size: 24px;
+    /* text-indent: 30px; */
+    line-height: 1.8;
+    padding-left: 80px;
+}
+.box2{
+    height: auto;
+    margin: auto;
+}
+.box2 img{
+   width:800px;
+   border-radius: 30px;
+   height: 500px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.line-letter{
+    width: 300px;
+    height: 5px;
+    background-color: #2ecc71;
+    margin: auto;
+}
+=======
+/* h2 styling (Secondary text) */
+.online-call h2 {
+    font-size: 20px;
+    color: white;
+    margin-left: 75px;
+    text-decoration: underline;
+}
+/* 
+footer */
+
+
+.custom-graphy-footer {
+    background-color: #ffffff;
+    padding: 60px 20px 30px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #111;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-brand {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.footer-logo img {
+    width: 140px;
+    height: 140px;
+}
+
+.brand-description {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.footer-links-grid {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    min-width: 300px;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: #000;
+}
+
+.footer-divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 40px 0 20px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright, .legal-links a {
+    font-size: 14px;
+    color: #888;
+    text-decoration: none;
+}
+
+.legal-links {
+    display: flex;
+    gap: 20px;
+}
+
+.legal-links a:hover {
+    text-decoration: underline;
+}
+.footer-icon {
+    color: #00ddff;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .footer-links-grid {
+        flex-direction: column;
+        gap: 30px;
+    }
+}                                                       
+
+
+
+
+
+
+
+
+
+
+
+/* landing page */
+/* Container holds everything and hides the overflow */
+.hero-container {
+  top: 70px;
+  position: relative;
+  width: 95%;
+  height: 80vh; /* Adjust height as needed */
+  overflow: hidden;
+  border-radius: 0; /* Ensures no rounded corners */
+  margin: auto;
+  border: 25px solid white;
+  
+}
+
+/* The long strip of images */
+.slideshow {
+  display: flex;
+  width: 400%; /* 100% per image (4 images = 400%) */
+  height: 100%;
+  animation: slideLeft 15s infinite ease-in-out;
+}
+
+/* Individual slide styling */
+.slide {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 25px;
+}
+
+/* Positioning the letters/text */
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.hero-text h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+/* The Horizontal Animation Logic */
+@keyframes slideLeft {
+  0%   { transform: translateX(0%); }
+  30%  { transform: translateX(0%); }    /* Stay on Slide 1 */
+  33%  { transform: translateX(-25%); }  /* Move to Slide 2 */
+  63%  { transform: translateX(-25%); }  /* Stay on Slide 2 */
+  66%  { transform: translateX(-50%); }  /* Move to Slide 3 */
+  96%  { transform: translateX(-50%); }  /* Stay on Slide 3 */
+  100% { transform: translateX(-75%); }  /* Move to Slide 4 (Clone) */
+}
+
+/* note */
+
+.pc-notice-section {
+        background-color: #f0feff; /* Cream background from image */
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 60px;
+        border-radius: 20px;
+        display: flex;
+        gap: 50px;
+        font-family: "Times New Roman", Times, serif;
+        box-sizing: border-box;
+    }
+
+    /* Left Side: Notice Title & Button */
+    .pc-left-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .pc-news-label {
+        color: #bca08d;
+        font-size: 16px;
+        letter-spacing: 4px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    .pc-news-label::before {
+        content: "";
+        width: 30px;
+        height: 1px;
+        background: #8dbcb8;
+    }
+
+    .pc-title {
+        color: #4a3728;
+        font-size: 64px;
+        font-weight: 400;
+        margin: 0 0 40px 0;
+    }
+
+    .pc-btn {
+        display: inline-block;
+        width: fit-content;
+        padding: 15px 45px;
+        border: 1px solid #f2d2b1;
+        border-radius: 50px;
+        background: white;
+        color: #d4a373;
+        text-decoration: none;
+        font-size: 14px;
+        position: relative;
+    }
+
+    .pc-btn::after {
+        content: ">";
+        position: absolute;
+        right: 20px;
+        font-size: 12px;
+    }
+
+    /* Right Side: List of News */
+    .pc-right-col {
+        flex: 2;
+        border-top: 1px solid #b8dbdc;
+    }
+
+    .pc-list-item {
+        display: flex;
+        padding: 25px 0;
+        border-bottom: 1px solid #b8dadc;
+        color: #4a3728;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .pc-date {
+        min-width: 140px;
+        font-weight: 500;
+    }
+
+    .pc-content {
+        flex: 1;
+    }
+
+    /* Instagram Banner Below */
+    .pc-insta-banner {
+        max-width: 400px;
+        margin: 40px auto;
+        background: linear-gradient(45deg, #33daf0, #3ce6db, #27cadc, #23c9cc, #1898bc);
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-family: sans-serif;
+    }
+
+    .pc-insta-icon {
+        font-size: 30px;
+        border: 2px solid white;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+        .pc-notice-section {
+            flex-direction: column;
+            padding: 30px;
+        }
+        .pc-title { font-size: 48px; }
+    }
+
+
+    /* our goal */
+
+    .strengths-container {
+        padding: 80px 20px;
+        background-color: #f9fbfb;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        text-align: center;
+    }
+
+    /* Section Title */
+    .strengths-header {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 60px;
+    }
+
+    .strengths-header h2 {
+        font-family: "Times New Roman", serif;
+        font-size: 42px;
+        color: #333;
+        margin: 0;
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .strengths-header .bg-text {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 80px;
+        color: rgba(0, 221, 255, 0.1); /* Your color #00ddff at 10% opacity */
+        z-index: 1;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        white-space: nowrap;
+    }
+
+    /* The Grid Layout for PC */
+    .strengths-grid {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Individual Cards */
+    .strength-card {
+        background: #ffffff;
+        flex: 1;
+        padding: 50px 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .strength-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 50px rgba(0, 221, 255, 0.15);
+    }
+
+    /* Icon Circle */
+    .icon-circle {
+        width: 100px;
+        height: 100px;
+        background-color: rgba(0, 221, 255, 0.1);
+        border: 2px solid #00ddff; /* Your Color */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+    }
+
+    .icon-circle img, .icon-circle span {
+        font-size: 40px;
+        color: #00ddff;
+    }
+
+    /* Card Content */
+    .strength-card h3 {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    .strength-card p {
+        color: #666;
+        font-size: 15px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        flex-grow: 1;
+    }
+
+    /* Custom Button */
+    .strength-btn {
+        display: inline-block;
+        padding: 12px 40px;
+        background-color: #00ddff; /* Your Color */
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: opacity 0.3s;
+    }
+
+    .strength-btn:hover {
+        opacity: 0.85;
+    }
+
+    /* Responsive for Tablet/Mobile */
+    @media (max-width: 992px) {
+        .strengths-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+        .strength-card {
+            width: 100%;
+            max-width: 450px;
+        }
+    }
+
+
+    /* mr jb note */
+
+
+    .director-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 80px;
+        padding: 100px 40px;
+        max-width: 1300px;
+        margin: 0 auto;
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    /* Left Side Content */
+    .dir-content {
+        flex: 1.2;
+    }
+
+    .dir-label {
+        font-family: sans-serif;
+        color: #999;
+        font-size: 14px;
+        letter-spacing: 4px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .dir-label::before {
+        content: "";
+        width: 35px;
+        height: 1px;
+        background: #ccc;
+    }
+
+    .dir-headline {
+        font-size: 52px;
+        line-height: 1.1;
+        color: #333;
+        margin-bottom: 35px;
+        font-weight: 400;
+    }
+
+    /* Your brand color highlight */
+    .text-highlight {
+        color: #00ddff;
+    }
+
+    .dir-paragraph {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.9;
+        color: #555;
+        margin-bottom: 45px;
+        text-align: justify;
+    }
+
+    /* Modern Button Style */
+    .dir-button {
+        display: inline-block;
+        padding: 16px 45px;
+        border: 1px solid #00ddff;
+        color: #00ddff;
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-family: sans-serif;
+    }
+
+    .dir-button:hover {
+        background-color: #00ddff;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 221, 255, 0.3);
+    }
+
+    /* Right Side Image Wrap */
+    .dir-image-area {
+        flex: 1;
+        position: relative;
+    }
+
+    /* The soft cream background behind photo */
+    .dir-image-area::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 100%;
+        height: 100%;
+        background-color: #fdf8f5;
+        z-index: 1;
+        border-radius: 10px;
+    }
+
+    .dir-photo {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        position: relative;
+        z-index: 2;
+        display: block;
+    }
+
+    /* Name Badge Overlay */
+    .dir-name-badge {
+        position: absolute;
+        bottom: 40px;
+        right: -30px;
+        background: white;
+        padding: 20px 40px;
+        z-index: 3;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        border-left: 4px solid #00ddff;
+    }
+
+    .dir-name-badge span {
+        font-size: 13px;
+        color: #888;
+        display: block;
+        margin-bottom: 5px;
+        font-family: sans-serif;
+    }
+
+    .dir-name-badge strong {
+        font-size: 22px;
+        color: #333;
+        font-weight: 400;
+    }
+
+    /* Tablet/Mobile Adjustments */
+    @media (max-width: 1024px) {
+        .director-section {
+            flex-direction: column;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .dir-label { justify-content: center; }
+        .dir-name-badge { right: 0; left: 0; margin: 0 auto; width: fit-content; bottom: -20px; }
+        .dir-headline { font-size: 38px; }
+    }
+>>>>>>> 1f08084998357bf98d39ff68155ab2ae25d9b10d
