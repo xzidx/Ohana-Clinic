@@ -1,0 +1,407 @@
+/* Schedule Styles */
+.more-space {
+    height: 100px;
+}
+
+:root {
+    --primary: #00ddff;
+    --primary-dark: #00b8d4;
+    --bg-gray: #f8fafc;
+    --border: #e2e8f0;
+    --text-main: #1e293b;
+}
+
+.scheduler-card {
+    margin: auto;
+    background: white;
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.instruction {
+    padding: 15px 20px 5px 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.controls {
+    padding: 10px 20px 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+
+.date-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.nav-arrow {
+    border: 1px solid var(--border);
+    background: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.menu-filter {
+    padding: 0 20px 15px 20px;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.menu-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: 0.2s ease;
+    color: var(--text-main);
+}
+
+/* This is your blue color when the button is clicked */
+.menu-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.toggle-group {
+    display: flex;
+    background: #eee;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.toggle-btn {
+    border: none;
+    padding: 6px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+    background: transparent;
+    color: #666;
+}
+
+.toggle-btn.active {
+    background: white;
+    color: var(--text-main);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 70px repeat(7, 1fr);
+}
+
+.header-day {
+    text-align: center;
+    padding: 15px 5px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border-bottom: 2px solid var(--primary);
+    border-right: 1px solid var(--border);
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.header-day.weekend { color: #ff5e5e; }
+
+.scroll-area {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.time-label {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #94a3b8;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid #f1f5f9;
+    background: #fafafa;
+}
+
+.slot {
+    height: 50px;
+    border-right: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 15px;   /* ← adjust this */
+    line-height: 1.1;
+    
+}
+.slot {
+    cursor: pointer;           /* show pointer on hover */
+    transition: transform 0.1s; /* optional: nice click effect */
+}
+.slot:hover {
+    transform: scale(1.03);    /* optional: slight hover zoom */
+    opacity: 0.9;
+}
+
+
+.day-view .header-day:not(.d-1), 
+.day-view .slot:not(.d-1) {
+    display: none;
+}
+
+.day-view .grid-container {
+    grid-template-columns: 70px 1fr;
+}
+:root {
+    --main-color: #00ddff;
+    --text-dark: #333;
+    --text-light: #666;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.4; /* Tighter line height */
+   
+    background-color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--main-color);
+    font-size: 20px; /* Smaller font */
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+h2 {
+    color: var(--main-color);
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+h3 {
+    border-left: 4px solid #ccc;
+    padding-left: 10px;
+    font-size: 15px;
+    color: var(--text-dark);
+    margin: 25px 0 15px 0; /* Reduced top margin from 40px to 25px */
+}
+
+.subtitle {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.divider {
+    border: 0;
+    border-top: 2px solid var(--main-color);
+    margin-bottom: 20px;
+}
+
+/* Compact Grid Layouts */
+.info-grid, .policy-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 12px; /* Reduced gap between rows */
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+    color: #444;
+    font-size: 14px;
+}
+
+.value {
+    font-size: 14px;
+}
+
+.hint {
+    display: block;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: -2px;
+}
+
+.required {
+    background-color: #ff5e5e;
+    color: white;
+    font-size: 9px;
+    padding: 1px 3px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.input-field {
+    width: 50px;
+    padding: 4px 8px; /* Slimmer input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button Area */
+.action-area {
+    display: flex;
+    justify-content: flex-start; /* Aligned left to match the "make a reservation" button position */
+    margin-top: 30px;
+}
+
+.btn-primary {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 12px 60px; /* Smaller button padding */
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: lowercase; /* Matches the original image style */
+}
+
+.btn-primary:hover {
+    filter: brightness(0.95);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root {
+    --main-color: #00ddff;
+    --error-red: #ff5e5e;
+    --error-bg: #fff5f5;
+    --text-dark: #333;
+    --text-light: #666;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.3; /* Tighter line height */
+  
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--main-color);
+    font-size: 18px; /* Smaller header */
+    margin: 5px 0 10px 0;
+}
+
+/* Slimmer Alert Box */
+.alert-box {
+    background-color: var(--error-bg);
+    border: 1px solid var(--error-red);
+    color: var(--error-red);
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 15px; /* Reduced space after alert */
+}
+
+h2 {
+    color: var(--main-color);
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+h3 {
+    border-left: 3px solid #ccc;
+    padding-left: 8px;
+    font-size: 14px;
+    margin: 15px 0 10px 0; /* Significantly reduced vertical margin */
+}
+
+.divider {
+    border: 0;
+    border-top: 1.5px solid var(--main-color);
+    margin-bottom: 12px;
+}
+
+/* Compact Grid */
+.info-grid, .policy-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 8px; /* Tight gap between rows */
+    margin-bottom: 5px;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.value {
+    font-size: 13px;
+}
+
+.hint {
+    display: block;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: -2px;
+}
+
+.required {
+    background-color: var(--error-red);
+    color: white;
+    font-size: 9px;
+    padding: 1px 3px;
+    border-radius: 2px;
+    margin-left: 5px;
+}
+
+.input-field {
+    width: 45px;
+    padding: 2px 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+}
+
+/* Compact Button */
+.action-area {
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background-color: #cccccc;
+    color: white;
+    border: none;
+    padding: 10px 50px; /* Slimmer button */
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    text-transform: lowercase;
+    cursor: not-allowed;
+}
