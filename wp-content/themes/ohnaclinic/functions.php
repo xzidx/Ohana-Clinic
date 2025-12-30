@@ -158,3 +158,41 @@ function custom_mime_types($mimes) {
     return $mimes;
 }
 add_filter('upload_mimes', 'custom_mime_types');
+
+
+add_action('wp_ajax_ohana_book_slot','ohana_book_slot');
+add_action('wp_ajax_nopriv_ohana_book_slot','ohana_book_slot');
+
+function ohana_book_slot(){
+    $doctor_id = intval($_POST['doctor_id'] ?? 0);
+    $date = sanitize_text_field($_POST['date'] ?? '');
+    $start = sanitize_text_field($_POST['start'] ?? '');
+    $end = sanitize_text_field($_POST['end'] ?? '');
+    $type = sanitize_text_field($_POST['type'] ?? '');
+    $people = intval($_POST['people'] ?? 1);
+
+    if(!$doctor_id || !$date || !$start || !$end){
+        wp_send_json(['success'=>false,'message'=>'Invalid data']);
+    }
+
+    // Save as a custom post type 'doctor_booking' or post meta
+    $booking_id = wp_insert_post([
+        'post_title' => "Booking: $date $start-$end",
+        'post_type' => 'doctor_booking',
+        'post_status' => 'publish',
+        'meta_input' => [
+            'doctor_id' => $doctor_id,
+            'date' => $date,
+            'start' => $start,
+            'end' => $end,
+            'type' => $type,
+            'people' => $people,
+        ]
+    ]);
+
+    if($booking_id){
+        wp_send_json(['success'=>true,'message'=>'Booking confirmed!']);
+    } else {
+        wp_send_json(['success'=>false,'message'=>'Booking failed']);
+    }
+}

@@ -42,11 +42,68 @@ get_header();
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Slot Modal -->
 <div id="slotModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999; overflow:auto;">
     <div style="background:#fff; padding:20px; border-radius:10px; max-width:700px; width:95%; position:relative;">
         <span id="modalClose" style="position:absolute; top:10px; right:15px; cursor:pointer; font-weight:bold;">✖</span>
         <div id="modalContent"></div>
+    </div>
+</div>
+
+<!-- Customer Info Modal -->
+<div id="customerModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000; overflow:auto;">
+    <div style="background:#fff; padding:20px; border-radius:10px; max-width:700px; width:80%; position:relative;">
+        <span id="customerClose" style="position:absolute; top:10px; right:15px; cursor:pointer; font-weight:bold;">✖</span>
+        <div class="form-container">
+            <h2>Customer Information</h2>
+            <form id="customerForm">
+                <input type="hidden" name="doctor_id" id="form-doctor-id">
+                <input type="hidden" name="date" id="form-date">
+                <input type="hidden" name="time" id="form-time">
+                <input type="hidden" name="people" id="form-people">
+
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" placeholder="Enter Last Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" placeholder="Enter First Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Numbers only, no hyphens" pattern="[0-9]*" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email-confirm">Email (Confirm)</label>
+                    <input type="email" id="email-confirm" name="email-confirm" placeholder="Re-enter email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <div class="dob-group">
+                        <select id="birth-year" name="birth-year" required><option value="">Year</option></select>
+                        <select id="birth-month" name="birth-month" required><option value="">Month</option></select>
+                        <select id="birth-day" name="birth-day" required><option value="">Day</option></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="patient-id">Patient ID / Chart #</label>
+                    <input type="text" id="patient-id" name="patient-id" maxlength="20" placeholder="For returning patients only">
+                </div>
+
+                <button type="submit" class="submit-btn">Proceed to Confirmation</button>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -80,6 +137,11 @@ const doctors = <?php echo json_encode($doctors); ?>;
 let weekOffset = 0;
 let currentFilter = 'all';
 const MS_PER_DAY = 24*60*60*1000;
+
+const slotModal = document.getElementById('slotModal');
+const modalContent = document.getElementById('modalContent');
+const customerModal = document.getElementById('customerModal');
+const customerForm = document.getElementById('customerForm');
 
 function getWeekStart(offset=0){
     const today = new Date();
@@ -141,7 +203,6 @@ function renderGrid(){
             doctors.forEach(doc=>{
                 doc.schedules.forEach(s=>{
                     const type = (s.type||'').toLowerCase();
-                    const capacity = s.capacity || 1; // Fetch capacity from meta
                     if(s.date === cellDateStr && (currentFilter==='all' || currentFilter===type)){
                         const [startHour,startMin] = s.start.split(':').map(Number);
                         const [endHour,endMin] = s.end.split(':').map(Number);
@@ -155,15 +216,17 @@ function renderGrid(){
 
                             slotDiv.onclick = function(e){
                                 e.stopPropagation();
-                                const modal = document.getElementById('slotModal');
-                                const content = document.getElementById('modalContent');
+
+                                const modal = slotModal;
+                                const content = modalContent;
 
                                 const visitType = type==='first'?'First Visit':'Follow-up Visit';
                                 const startTime = `${String(startHour).padStart(2,'0')}:${String(startMin).padStart(2,'0')}`;
                                 const endTime = `${String(endHour).padStart(2,'0')}:${String(endMin).padStart(2,'0')}`;
+                                
+                                const capacity = s.capacity || 1; // <-- FIX: define capacity
 
                                 if(s.full){
-                                    // Fully booked modal shows capacity
                                     content.innerHTML = `
                                     <div class="container">
                                         <header>
@@ -205,52 +268,48 @@ function renderGrid(){
                                             <button class="btn-primary disabled" disabled>make a reservation</button>
                                         </div>
                                     </div>`;
-                                } else {
-                                    // Available slot modal
-                                    content.innerHTML = `
-                                    <div class="container">
-                                        <header>
-                                            <h1>${doc.name} - ${visitType}</h1>
-                                            <p class="subtitle">Please check the reservation details below</p>
-                                        </header>
-                                        <section class="reservation-details">
-                                            <h2>Reservation details</h2>
-                                            <hr class="divider">
-                                            <div class="info-grid">
-                                                <div class="label">Date and time of use</div>
-                                                <div class="value">
-                                                    <strong>${cellDateStr} ${startTime} - ${endTime}</strong>
-                                                    <span class="hint">Check the start and end dates</span>
-                                                </div>
-                                                <div class="label">Number of people <span class="required">Required</span></div>
-                                                <div class="value">
-                                                    <input type="number" value="1" min="1" class="input-field">
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section class="notes-section">
-                                            <h3>Notes regarding reservations and cancellations</h3>
-                                            <div class="policy-grid">
-                                                <div class="label">Registration begins</div>
-                                                <div class="value">Applications accepted from midnight 30 days prior</div>
-                                                <div class="label">Application deadline</div>
-                                                <div class="value">Reception up to 3 hours before</div>
-                                                <div class="label">Cancellation deadline</div>
-                                                <div class="value">Up to 3 hours before</div>
-                                                <div class="label">Cancellation Policy</div>
-                                                <div class="value">Contact the clinic directly</div>
-                                            </div>
-                                        </section>
-                                        <div class="action-area">
-                                            <button class="btn-primary" id="bookSlotBtn">Make a reservation</button>
-                                        </div>
-                                    </div>`;
-
-                                    document.getElementById('bookSlotBtn').onclick = function(){
-                                        alert(`Booking confirmed for ${doc.name} on ${cellDateStr} ${startTime} - ${endTime}`);
-                                        modal.style.display = 'none';
-                                    };
+                                    modal.style.display = 'flex';
+                                    return;
                                 }
+
+                                content.innerHTML = `
+                                <div class="container">
+                                    <header>
+                                        <h1>${doc.name} - ${visitType}</h1>
+                                        <p class="subtitle">Please check the reservation details below</p>
+                                    </header>
+                                    <section class="reservation-details">
+                                        <h2>Reservation details</h2>
+                                        <hr class="divider">
+                                        <div class="info-grid">
+                                            <div class="label">Date and time of use</div>
+                                            <div class="value">
+                                                <strong>${cellDateStr} ${startTime} - ${endTime}</strong>
+                                                <span class="hint">Check the start and end dates</span>
+                                            </div>
+                                            <div class="label">Number of people <span class="required">Required</span></div>
+                                            <div class="value">
+                                                <input type="number" value="1" min="1" class="input-field" id="slot-people">
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="notes-section">
+                                        <h3>Notes regarding reservations and cancellations</h3>
+                                        <div class="policy-grid">
+                                            <div class="label">Registration begins</div>
+                                            <div class="value">Applications accepted from midnight 30 days prior</div>
+                                            <div class="label">Application deadline</div>
+                                            <div class="value">Reception up to 3 hours before</div>
+                                            <div class="label">Cancellation deadline</div>
+                                            <div class="value">Up to 3 hours before</div>
+                                            <div class="label">Cancellation Policy</div>
+                                            <div class="value">Contact the clinic directly</div>
+                                        </div>
+                                    </section>
+                                    <div class="action-area">
+                                        <button class="btn-primary" id="bookSlotBtn">Make a reservation</button>
+                                    </div>
+                                </div>`;
 
                                 modal.style.display = 'flex';
                             };
@@ -264,13 +323,11 @@ function renderGrid(){
     }
 }
 
-// Close modal
-document.getElementById('modalClose').onclick = function(){
-    document.getElementById('slotModal').style.display = 'none';
-};
-document.getElementById('slotModal').onclick = function(e){
-    if(e.target === this) this.style.display = 'none';
-};
+// Close modals
+document.getElementById('modalClose').onclick = function(){ slotModal.style.display = 'none'; };
+document.getElementById('slotModal').onclick = function(e){ if(e.target === this) this.style.display = 'none'; };
+document.getElementById('customerClose').onclick = function(){ customerModal.style.display = 'none'; };
+document.getElementById('customerModal').onclick = function(e){ if(e.target === this) this.style.display = 'none'; };
 
 function changeWeek(step){ weekOffset+=step; renderHeader(); renderGrid(); }
 function filterMenu(btn){ 
@@ -288,6 +345,70 @@ function setView(view,btn){
 
 renderHeader();
 renderGrid();
+
+// Dynamic event delegation for "Make a reservation" button
+document.addEventListener('click', function(e){
+    if(e.target && e.target.id === 'bookSlotBtn'){
+        e.preventDefault();
+
+        const slotContainer = e.target.closest('.container');
+        const headerText = slotContainer.querySelector('h1').textContent;
+        const doctorName = headerText.split(' - ')[0];
+        const reservationInfo = slotContainer.querySelector('.reservation-details .info-grid .value strong').textContent;
+        const [date, timeRange] = reservationInfo.split(' ');
+        const time = timeRange.split('-')[0].trim();
+        const people = slotContainer.querySelector('#slot-people').value;
+
+        const doctor = doctors.find(d => d.name === doctorName);
+        if(!doctor){
+            alert("Doctor not found!");
+            return;
+        }
+
+        document.getElementById('form-doctor-id').value = doctor.id;
+        document.getElementById('form-date').value = date;
+        document.getElementById('form-time').value = time;
+        document.getElementById('form-people').value = people;
+
+        slotModal.style.display = 'none';
+        customerModal.style.display = 'flex';
+    }
+});
+
+// AJAX submission for customer form
+customerForm.onsubmit = function(e){
+    e.preventDefault();
+    const data = new FormData(customerForm);
+
+    if(data.get('email') !== data.get('email-confirm')){
+        alert("Email and confirmation do not match");
+        return;
+    }
+
+    fetch("<?php echo admin_url('admin-ajax.php'); ?>?action=ods_book_slot", {
+        method: "POST",
+        body: data
+    }).then(res=>res.json()).then(res=>{
+        if(res.success){
+            alert("Booking confirmed!");
+            customerModal.style.display = 'none';
+            customerForm.reset();
+        } else {
+            alert("Failed to book: "+res.data);
+        }
+    });
+};
+
+// Populate DOB dropdowns
+const yearSelect = document.getElementById('birth-year');
+const currentYear = new Date().getFullYear();
+for (let i = currentYear; i >= 1920; i--) yearSelect.appendChild(new Option(i,i));
+
+const monthSelect = document.getElementById('birth-month');
+for (let i = 1; i <= 12; i++) monthSelect.appendChild(new Option(i,i));
+
+const daySelect = document.getElementById('birth-day');
+for (let i = 1; i <= 31; i++) daySelect.appendChild(new Option(i,i));
 </script>
 
 <?php get_footer(); ?>

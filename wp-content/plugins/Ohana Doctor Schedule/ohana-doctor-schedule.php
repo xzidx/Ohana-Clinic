@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Ohana Doctor Schedule
-Description: Multi-date doctor availability with booking status and capacity.
-Version: 5.0
+Description: Multi-date doctor availability with booking status, capacity, and online booking.
+Version: 5.2
 Author: Ohana Clinic
 */
 
@@ -115,4 +115,76 @@ add_action('save_post', function ($post_id) {
         delete_post_meta($post_id,'_ods_schedules');
     }
 });
-?>
+
+/* =========================
+   3. BOOKING POST TYPE
+========================= */
+add_action('init', function(){
+    register_post_type('doctor_booking', [
+        'labels' => [
+            'name' => 'Doctor Bookings',
+            'singular_name' => 'Doctor Booking',
+        ],
+        'public' => false,
+        'show_ui' => true,
+        'menu_icon' => 'dashicons-calendar-alt',
+        'supports' => ['title', 'custom-fields'],
+    ]);
+});
+
+/* =========================
+   4. AJAX BOOKING HANDLER (Save all customer info)
+========================= */
+add_action('wp_ajax_ods_book_slot', 'ods_handle_booking');
+add_action('wp_ajax_nopriv_ods_book_slot', 'ods_handle_booking');
+
+function ods_handle_booking() {
+    $required = ['doctor_id','date','time','people','last-name','first-name','phone','email','birth-year','birth-month','birth-day'];
+    foreach($required as $key){
+        if(empty($_POST[$key])){
+            wp_send_json_error("Missing field: $key");
+        }
+    }
+
+    $doctor_id = intval($_POST['doctor_id']);
+    $date = sanitize_text_field($_POST['date']);
+    $time = sanitize_text_field($_POST['time']);
+    $people = intval($_POST['people']);
+    $last_name = sanitize_text_field($_POST['last-name']);
+    $first_name = sanitize_text_field($_POST['first-name']);
+    $phone = sanitize_text_field($_POST['phone']);
+    $email = sanitize_email($_POST['email']);
+    $birth = sanitize_text_field($_POST['birth-year']).'-'.sanitize_text_field($_POST['birth-month']).'-'.sanitize_text_field($_POST['birth-day']);
+    $patient_id = sanitize_text_field($_POST['patient-id'] ?? '');
+    $remarks = sanitize_textarea_field($_POST['remarks'] ?? '');
+
+    // Create booking post
+    $booking_id = wp_insert_post([
+        'post_type' => 'doctor_booking',
+        'post_title' => "Booking: $first_name $last_name with doctor #$doctor_id on $date $time",
+        'post_status' => 'publish',
+        'meta_input' => [
+            'doctor_id' => $doctor_id,
+            'date' => $date,
+            'time' => $time,
+            'people' => $people,
+            'last_name' => $last_name,
+            'first_name' => $first_name,
+            'phone' => $phone,
+            'email' => $email,
+            'birth_date' => $birth,
+            'patient_id' => $patient_id,
+            'remarks' => $remarks,
+        ],
+    ]);
+
+    if($booking_id){
+        // Email notification
+        $message = "New booking:\nDoctor ID: $doctor_id\nDate: $date\nTime: $time\nPatient: $first_name $last_name\nPhone: $phone\nEmail: $email\nPeople: $people\nPatient ID: $patient_id\nRemarks: $remarks";
+        wp_mail(get_option('admin_email'), 'New Doctor Booking', $message);
+
+        wp_send_json_success('Booking saved!');
+    } else {
+        wp_send_json_error('Failed to save booking.');
+    }
+}
