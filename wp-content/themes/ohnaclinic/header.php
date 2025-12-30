@@ -30,10 +30,12 @@
         ?>
         <!-- <i class="fa-solid fa-list phone-only" id="menu-toggle"></i> -->
          <div class="online-call">
-                <a href=""><i class="fa-solid fa-headset phone-only-call"></i></a>
-               <a href=""> <h1><i class="fa-solid fa-calendar-days phone-only"></i> Online reservation</h1>
-                </a>
-         </div>
+            <a href=""><i class="fa-solid fa-headset phone-only-call"></i></a>
+            <a href="<?php echo get_permalink( get_page_by_path('doctor-schedule') ); ?>">
+                <h1><i class="fa-solid fa-calendar-days phone-only"></i> Online reservation</h1>
+            </a>
+        </div>
+
     </div>
 </header>
 

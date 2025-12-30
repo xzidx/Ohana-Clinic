@@ -14,7 +14,7 @@ add_action('after_setup_theme', 'mytheme_setup');
 
 
 // -------------------------
-// ENQUEUE STYLES
+// ENQUEUE STYLES (Keep all your existing page logic)
 // -------------------------
 function mytheme_assets() {
 
@@ -44,7 +44,7 @@ function mytheme_assets() {
         );
     }
 
-    // About page CSS by page slug
+    // About page CSS
     if (is_page('about')) { 
         wp_enqueue_style(
             'mytheme-about-style',
@@ -54,7 +54,7 @@ function mytheme_assets() {
         );
     }
 
-    // Contact page CSS by page slug
+    // Contact page CSS
     if (is_page('contact')) { 
         wp_enqueue_style(
             'mytheme-contact-style',
@@ -63,72 +63,136 @@ function mytheme_assets() {
             filemtime(get_stylesheet_directory() . '/css/contact.css')
         );
     }
+
+    // Inquiry page CSS
+    if (is_page('inquiry')) { 
+        wp_enqueue_style(
+            'mytheme-inquiry-style',
+            get_stylesheet_directory_uri() . '/css/inquiry.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/inquiry.css')
+        );
+    }
+    
+    // Doctor Introduction page CSS
+    if (is_page('doctor-introduction')) { 
+        wp_enqueue_style(
+            'mytheme-doctor-intro-style',
+            get_stylesheet_directory_uri() . '/css/doctor-introduction.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/doctor-introduction.css')
+        );
+    }
+        // Doctor Schedule page CSS
+    if (is_page('doctor-schedule')) { 
+        wp_enqueue_style(
+            'mytheme-doctor-schedule-style',
+            get_stylesheet_directory_uri() . '/css/doctor-schedule.css',
+            ['mytheme-style'], // dependency on main style
+            filemtime(get_stylesheet_directory() . '/css/doctor-schedule.css')
+        );
+    }
+
 }
 add_action('wp_enqueue_scripts', 'mytheme_assets');
 
 
 // -------------------------
-// CUSTOM POST TYPE: PRODUCTS
+// CUSTOM POST TYPE: DOCTORS (Changed from Products)
 // -------------------------
-function mytheme_register_products() {
-    register_post_type('product', [
-        'labels' => ['name'=>'Products','singular_name'=>'Product'],
+function mytheme_register_doctors() {
+    register_post_type('doctor', [
+        'labels' => [
+            'name' => 'Doctors',
+            'singular_name' => 'Doctor',
+            'add_new' => 'Add New Doctor',
+            'add_new_item' => 'Add New Doctor Profile'
+        ],
         'public' => true,
         'has_archive' => true,
-        'menu_icon' => 'dashicons-cart',
-        'supports' => ['title','editor','thumbnail']
+        'menu_icon' => 'dashicons-businessman', // Changed to professional icon
+        'supports' => ['title', 'editor', 'thumbnail']
     ]);
 }
-add_action('init','mytheme_register_products');
-
-function mytheme_register_product_category() {
-    register_taxonomy('product_category','product',[
-        'label'=>'Product Categories',
-        'hierarchical'=>true
-    ]);
-}
-add_action('init','mytheme_register_product_category');
-
+add_action('init', 'mytheme_register_doctors');
 
 // -------------------------
-// PRODUCT META BOXES
+// DOCTOR META BOXES (Changed from Product Meta)
 // -------------------------
-function mytheme_product_meta() {
-    add_meta_box('product_details','Product Details','mytheme_product_meta_callback','product');
+function mytheme_doctor_meta() {
+    add_meta_box('doctor_details', 'Doctor Profile Details', 'mytheme_doctor_meta_callback', 'doctor');
 }
-add_action('add_meta_boxes','mytheme_product_meta');
+add_action('add_meta_boxes', 'mytheme_doctor_meta');
 
-function mytheme_product_meta_callback($post){
-    $price    = get_post_meta($post->ID,'_price',true);
-    $stock    = get_post_meta($post->ID,'_stock',true);
-    $featured = get_post_meta($post->ID,'_featured',true);
+function mytheme_doctor_meta_callback($post) {
+    $position     = get_post_meta($post->ID, '_doctor_position', true);
+    $achievements = get_post_meta($post->ID, '_doctor_achievements', true);
     ?>
     <p>
-        <label>Price ($):</label><br>
-        <input type="number" name="price" value="<?php echo esc_attr($price); ?>">
+        <label><strong>Current Title / Position:</strong></label><br>
+        <input type="text" name="doctor_position" value="<?php echo esc_attr($position); ?>" style="width:100%;" placeholder="e.g. Keiai Clinic Ethics Committee Chairman">
     </p>
 
     <p>
-        <label>Stock:</label><br>
-        <input type="number" name="stock" value="<?php echo esc_attr($stock); ?>">
-    </p>
-
-    <p>
-        <label>
-            <input type="checkbox" name="featured" value="1" <?php checked($featured, '1'); ?>>
-            Featured Product
-        </label>
+        <label><strong>Achievements & History (One per line):</strong></label><br>
+        <textarea name="doctor_achievements" rows="8" style="width:100%;" placeholder="Former Cabinet Secretariat Advisor..."><?php echo esc_textarea($achievements); ?></textarea>
     </p>
     <?php
 }
 
-function mytheme_save_product_meta($post_id){
-
+function mytheme_save_doctor_meta($post_id) {
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    if (get_post_type($post_id) !== 'product') return;
+    if (get_post_type($post_id) !== 'doctor') return;
 
-    update_post_meta($post_id,'_price', $_POST['price'] ?? '');
-    update_post_meta($post_id,'_stock', $_POST['stock'] ?? '');
-    update_post_meta($post_id,'_featured', isset($_POST['featured']) ? '1' : '0');
+    if (isset($_POST['doctor_position'])) {
+        update_post_meta($post_id, '_doctor_position', sanitize_text_field($_POST['doctor_position']));
+    }
+    if (isset($_POST['doctor_achievements'])) {
+        update_post_meta($post_id, '_doctor_achievements', sanitize_textarea_field($_POST['doctor_achievements']));
+    }
 }
-add_action('save_post','mytheme_save_product_meta');
+add_action('save_post', 'mytheme_save_doctor_meta');
+
+function custom_mime_types($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'custom_mime_types');
+
+
+add_action('wp_ajax_ohana_book_slot','ohana_book_slot');
+add_action('wp_ajax_nopriv_ohana_book_slot','ohana_book_slot');
+
+function ohana_book_slot(){
+    $doctor_id = intval($_POST['doctor_id'] ?? 0);
+    $date = sanitize_text_field($_POST['date'] ?? '');
+    $start = sanitize_text_field($_POST['start'] ?? '');
+    $end = sanitize_text_field($_POST['end'] ?? '');
+    $type = sanitize_text_field($_POST['type'] ?? '');
+    $people = intval($_POST['people'] ?? 1);
+
+    if(!$doctor_id || !$date || !$start || !$end){
+        wp_send_json(['success'=>false,'message'=>'Invalid data']);
+    }
+
+    // Save as a custom post type 'doctor_booking' or post meta
+    $booking_id = wp_insert_post([
+        'post_title' => "Booking: $date $start-$end",
+        'post_type' => 'doctor_booking',
+        'post_status' => 'publish',
+        'meta_input' => [
+            'doctor_id' => $doctor_id,
+            'date' => $date,
+            'start' => $start,
+            'end' => $end,
+            'type' => $type,
+            'people' => $people,
+        ]
+    ]);
+
+    if($booking_id){
+        wp_send_json(['success'=>true,'message'=>'Booking confirmed!']);
+    } else {
+        wp_send_json(['success'=>false,'message'=>'Booking failed']);
+    }
+}
