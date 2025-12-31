@@ -62,21 +62,21 @@ This approach to medicine prioritizes the human connection alongside clinical ex
 
     <div class="strengths-grid">
         <div class="strength-card">
-            <div class="icon-circle"><span>🕒</span></div>
+            <div class="icon-circle"><span><i class="fa-solid fa-clock"></i></span></div>
             <h3>Easy to commute<br>while working</h3>
             <p>Close to the station. Open from 8am to 8pm (Monday, Wednesday and Friday) to accommodate your busy schedule.</p>
             <a href="#" class="strength-btn">Learn more ></a>
         </div>
 
         <div class="strength-card">
-            <div class="icon-circle"><span>📈</span></div>
+            <div class="icon-circle"><span><i class="fa-solid fa-square-poll-horizontal"></i></span></div>
             <h3>Overwhelming experience<br>and pregnancy results</h3>
-            <p>Pregnancy rate from 2022 to 2023: <strong>63.2%</strong> (frozen blastocyst transfer). Proven excellence in IVF care.</p>
+            <p>Pregnancy rate from 2024 to 2025: <strong>63.2%</strong> (frozen blastocyst transfer). Proven excellence in IVF care.</p>
             <a href="#" class="strength-btn">Learn more ></a>
         </div>
 
         <div class="strength-card">
-            <div class="icon-circle"><span>👩‍⚕️</span></div>
+            <div class="icon-circle"><span><i class="fa-solid fa-user-doctor"></i></span></div>
             <h3>Examination by<br>the same doctor</h3>
             <p>Consistency is key to quality care. You will be seen by the same specialist throughout your entire treatment plan.</p>
             <a href="#" class="strength-btn">Learn more ></a>
@@ -95,7 +95,7 @@ This approach to medicine prioritizes the human connection alongside clinical ex
             provides
         </h2>
         <p class="dir-paragraph">
-            Our clinic's philosophy is "More friendly infertility treatment" and it is our hope that patients, doctors, and staff can communicate and become friendly with each other to make infertility treatment, which can often be a gloomy experience, more cheerful. We also incorporate new tests, treatments, and techniques that are thought to be effective, and all staff members will do their best to support as many patients as possible so that they can have children.
+            Our clinic's Ohana is "More friendly infertility treatment" and it is our hope that patients, doctors, and staff can communicate and become friendly with each other to make infertility treatment, which can often be a gloomy experience, more cheerful. We also incorporate new tests, treatments, and techniques that are thought to be effective, and all staff members will do their best to support as many patients as possible so that they can have children.
         </p>
         <a href="#" class="dir-button">Director introduction &gt;</a>
     </div>
@@ -109,6 +109,56 @@ This approach to medicine prioritizes the human connection alongside clinical ex
     </div>
 </div>
 
+ <!-- takecare real -->
+
+ <section class="med-info-section">
+    <div class="med-info-heading-col">
+        <h2>Medical<br>Information</h2>
+    </div>
+
+    <div class="med-info-card-col">
+        <h3 class="med-card-title">Fertilization</h3>
+        <p class="med-card-text">
+            This is a treatment in which eggs that have developed to the point of ovulation are removed from the body through egg retrieval surgery, fertilized with the partner's sperm, and the successfully fertilized and divided fertilized eggs are returned to the uterus to promote implantation.
+        </p>
+        <a href="#" class="med-btn">Learn more &gt;</a>
+    </div>
+
+    <div class="med-info-card-col">
+        <h3 class="med-card-title">General<br>infertility<br>treatment</h3>
+        <p class="med-card-text">
+            This is a treatment that aims to become pregnant using timing methods or artificial insemination, depending on the cause of infertility.
+        </p>
+        <a href="#" class="med-btn">Learn more &gt;</a>
+    </div>
+</section>
+<div class="res-section-outer">
+    <div class="res-card">
+        <div class="res-bg-text">RESERVE</div>
+        <h2 class="res-title">Reservation</h2>
+        
+        <p class="res-subtitle">
+            We accept reservations by phone and online.<br>
+            If you are in a hurry, please call us.
+        </p>
+
+        <div class="res-btn-container">
+            <a href="tel:03-3987-3090" class="res-btn btn-phone">
+                <span><i class="fa-solid fa-phone"></i></span> 03-3987-3090
+            </a>
+
+            <a href="#" class="res-btn btn-online">
+                <span><i class="fa-solid fa-calendar-day"></i></span> ONLINE RESERVATION
+            </a>
+        </div>
+
+        <p class="res-footer-text">It may take some time for us to respond to inquiries made through the inquiry form.</p>
+
+        <div class="inquiry-link-box">
+            <a href="#" class="inquiry-link">inquiry &gt;</a>
+        </div>
+    </div>
+</div>
 
 <?php get_footer(); ?>
 

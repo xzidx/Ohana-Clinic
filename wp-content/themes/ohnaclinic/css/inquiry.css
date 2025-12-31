@@ -1,0 +1,120 @@
+.more-space {
+    height: 100px;
+}
+.main {
+    margin: auto;
+    text-align: center;
+    
+}
+.main h1 {
+    color: rgb(46, 46, 46);
+    font-family: "Times New Roman", serif;
+}
+.main span {
+    color: rgb(106, 106, 106);
+}
+.contact-form-section {
+        background-color: #ffffff;
+        padding: 80px 40px;
+        max-width: 1100px;
+        margin: 40px auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 50px rgba(0,0,0,0.05);
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .contact-form-section h2 {
+        font-size: 28px;
+        color: #303030;
+        margin-bottom: 40px;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        margin-bottom: 25px;
+    }
+
+   
+    .form-group {
+        position: relative;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 15px 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group:focus-within {
+        border-color: #00ddff; 
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 15px;
+        color: #666;
+        padding: 5px 0;
+    }
+
+    .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+ 
+    .form-icon {
+        font-size: 20px;
+        color: #888;
+        margin-top: 2px;
+    }
+
+    /* Message  */
+    .full-width {
+        grid-column: span 2;
+    }
+
+    /* Submit  */
+    .submit-btn {
+        background-color: #00ddff;
+        color: white;
+        border: none;
+        padding: 16px 45px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background-color: #00b8d4;
+        box-shadow: 0 8px 20px rgba(0, 221, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /*Mobile */
+    @media (max-width: 800px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        .full-width {
+            grid-column: span 1;
+        }
+    }
