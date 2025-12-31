@@ -1,1 +1,146 @@
- 
+
+    .more-space {
+        height: 100px;
+    }
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    /* ====== Header Section ====== */
+    .contact-header {
+      background-color: #87CEEB;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 60px;
+    }
+
+    .contact-header .text {
+      max-width: 600px;
+    }
+
+    .contact-header h2 {
+      font-size: 26px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .contact-header h3 {
+      font-size: 20px;
+      margin: 8px 0;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .contact-header p {
+      margin: 6px 0;
+      line-height: 1.6;
+    }
+
+    .contact-header img {
+      max-width: 280px;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    /* ====== Contact Form Box ====== */
+    .contact-form-container {
+      background-color: #fff;
+      max-width: 800px;
+      margin: -60px auto 60px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      padding: 40px;
+    }
+
+    .contact-form-container h4 {
+      text-align: center;
+      margin-top: 0;
+      font-weight: 500;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: none;
+      min-height: 120px;
+    }
+
+    button {
+      background-color: #63c2e7;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      align-self: flex-end;
+    }
+
+    button:hover {
+      background-color: #90000c;
+    }
+
+    .thank-note {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 20px;
+    }
+    section h3{
+        text-align: center;
+        color: #000000;
+
+    }
+    section img{
+        width: 200px;
+        height: 200px;
+
+    }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 768px) {
+      .contact-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .contact-header img {
+        margin-top: 20px;
+      }
+
+      .contact-form-container {
+        margin: -40px 20px 40px;
+        padding: 30px;
+      }
+    }

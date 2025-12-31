@@ -42,6 +42,7 @@ function mytheme_assets() {
             ['mytheme-style'],
             filemtime(get_stylesheet_directory() . '/css/front-page.css')
         );
+    
     }
 
     // About page CSS by page slug
@@ -63,6 +64,37 @@ function mytheme_assets() {
             filemtime(get_stylesheet_directory() . '/css/contact.css')
         );
     }
+    // Introduction page CSS by page slug
+    if (is_page('introduction-to-the-hospital')) {
+        wp_enqueue_style(
+            'mytheme-introduction-style',
+            get_stylesheet_directory_uri() . '/css/introduction.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/introduction.css')
+        );
+    }
+        // Treatment Results page CSS
+    if (is_page('treatment-results')) {
+        wp_enqueue_style(
+            'mytheme-treatment-style',
+            get_stylesheet_directory_uri() . '/css/treatment-results.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/treatment-results.css')
+        );
+    }
+
+     // Direction page CSS
+if (is_page_template('page-direction.php')) {
+    wp_enqueue_style(
+        'mytheme-direction-style',
+        get_stylesheet_directory_uri() . '/css/direction.css',
+        ['mytheme-style'],
+        filemtime(get_stylesheet_directory() . '/css/direction.css')
+    );
+}
+
+
+
 }
 add_action('wp_enqueue_scripts', 'mytheme_assets');
 

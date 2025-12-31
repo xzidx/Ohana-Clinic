@@ -1,11 +1,9 @@
-
 <?php
 /*
-Template Name: About Page
+Template Name: Introduction to the Hospital
 */
 get_header();
 ?>
-
 
 <main>
    <div class="container">
@@ -102,7 +100,29 @@ get_header();
 </section>
 
            </div>
-         
+     <section class="safety-policy">
+  <h2>Safety Policy</h2>
+  <p>
+    Royal Phnom Penh Hospital operates its business with responsibility to its patients, hospital personnel, and the wider community by placing great emphasis on environmental preservation, occupational health, and safety. We are committed to continually improving our systems to ensure the highest level of care and protection.
+  </p>
+
+  <h2>The First JCI Accredited Hospital in Cambodia</h2>
+  <p>
+    With a dedication to excellence, Royal Phnom Penh Hospital has been accredited by the Joint Commission International (JCI) in recognition of our world-class medical service and healthcare practices. We continuously develop our medical expertise to achieve the highest possible standards — because when it comes to trust, only the best will do.
+  </p>
+
+  <h2>Truly International</h2>
+  <ul>
+    <li>Qualified Professionals</li>
+    <li>Trusted Expertise</li>
+    <li>Modern Technology</li>
+  </ul>
+
+  <p>
+    The first JCI-accredited hospital in Cambodia, <strong>Royal Phnom Penh Hospital</strong> is a tertiary care hospital managed and operated by <strong>Bangkok Dusit Medical Services Public Co., Ltd (BDMS)</strong>. Established in 1972, BDMS is the largest operator of private hospitals in Thailand and Southeast Asia.
+  </p>
+</section>
+    
 
 </div>              
 

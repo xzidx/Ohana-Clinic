@@ -1,0 +1,12 @@
+.more-space {
+    height: 100px;
+}
+.about-img{
+    width: 100%;
+    height: 320px;
+}
+.about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
