@@ -8,7 +8,7 @@ get_header();
 <main>
    <div class="container">
                   <div class="about-img">
-                  <img src="http://clinic_website.test/wp-content/uploads/2025/12/surgin-room-scaled.jpeg" alt="">
+                  <img src="http://clinic_website.test/wp-content/uploads/2025/12/sildebed.jpg" alt="">
                   </div>
                            <div class="hero-text">
                                   <h2>Our hospital philosophy</h2>
@@ -73,14 +73,14 @@ get_header();
 
 
                         <div class="box2">
-                        <img src="http://clinic_website.test/wp-content/uploads/2025/12/doctor.webp" alt="">
+                        <img src="http://clinic_website.test/wp-content/uploads/2025/12/sildieesowww.jpg" alt="">
                         </div>
                      
                    </div>
                    <section class="tech-section">
 
                    <div class="tech-image">
-    <img src="http://clinic_website.test/wp-content/uploads/2025/12/doctor.webp" alt="New testing and technology">
+    <img src="http://clinic_website.test/wp-content/uploads/2025/12/sildeshow2.jpg" alt="New testing and technology">
   </div>
 
   

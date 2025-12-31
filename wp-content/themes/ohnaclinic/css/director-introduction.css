@@ -1,0 +1,101 @@
+:root {
+    --brand-color: #00ddff; /* Your requested main color */
+    --text-color: #333;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.more-space {
+    height: 100px;
+}
+.profile-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: var(--font-family);
+    color: var(--text-color);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-header h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.profile-header .name {
+    color: #444; /* Keeping the name slightly darker as in original */
+}
+
+.underline {
+    width: 80px;
+    height: 2px;
+    background-color: var(--brand-color);
+    margin: 10px auto 0;
+}
+
+.profile-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.profile-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.mission-statement {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+.credentials-list {
+    list-style: none;
+    padding: 0;
+}
+
+.credentials-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Custom Bullet Point using your main color */
+.credentials-list li::before {
+    content: "•";
+    color: var(--brand-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    top: -5px;
+}
+
+.profile-image {
+    flex: 0 0 400px;
+}
+
+.profile-image img {
+    width: 100%;
+    border-radius: 15px; /* Matches the rounded corners in your image */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .profile-content {
+        flex-direction: column-reverse; /* Text follows image on small screens */
+    }
+    .profile-image {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+}

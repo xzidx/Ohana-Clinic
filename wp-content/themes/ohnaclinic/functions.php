@@ -14,7 +14,7 @@ add_action('after_setup_theme', 'mytheme_setup');
 
 
 // -------------------------
-// ENQUEUE STYLES
+// ENQUEUE STYLES (Keep all your existing page logic)
 // -------------------------
 function mytheme_assets() {
 
@@ -73,7 +73,7 @@ function mytheme_assets() {
             filemtime(get_stylesheet_directory() . '/css/inquiry.css')
         );
     }
-
+    
     // Doctor Introduction page CSS
     if (is_page('doctor-introduction')) { 
         wp_enqueue_style(
@@ -83,22 +83,88 @@ function mytheme_assets() {
             filemtime(get_stylesheet_directory() . '/css/doctor-introduction.css')
         );
     }
-
-    // Doctor Schedule page CSS
+        // Doctor Schedule page CSS
     if (is_page('doctor-schedule')) { 
         wp_enqueue_style(
             'mytheme-doctor-schedule-style',
             get_stylesheet_directory_uri() . '/css/doctor-schedule.css',
-            ['mytheme-style'],
+            ['mytheme-style'], // dependency on main style
             filemtime(get_stylesheet_directory() . '/css/doctor-schedule.css')
         );
     }
+        // Introduction to Hospital page CSS
+    if (is_page('introduction-to-the-hospital')) {
+        wp_enqueue_style(
+            'mytheme-intro-hospital-style',
+            get_stylesheet_directory_uri() . '/css/introduction-to-the-hospital.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/introduction-to-the-hospital.css')
+        );
+    }
+        // Director Introduction page CSS
+    if (is_page('director-introduction')) {
+        wp_enqueue_style(
+            'mytheme-director-intro-style',
+            get_stylesheet_directory_uri() . '/css/director-introduction.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/director-introduction.css')
+        );
+    }
+        // Treatment Results page CSS
+    if (is_page('treatment-results')) {
+        wp_enqueue_style(
+            'mytheme-treatment-results-style',
+            get_stylesheet_directory_uri() . '/css/treatment-results.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/treatment-results.css')
+        );
+    }
+        // Services page CSS
+    if (is_page('services')) {
+        wp_enqueue_style(
+            'mytheme-services-style',
+            get_stylesheet_directory_uri() . '/css/services.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/services.css')
+        );
+    }
+        // Infertility Testing page CSS
+    if (is_page('infertility-testing')) {
+        wp_enqueue_style(
+            'mytheme-infertility-testing-style',
+            get_stylesheet_directory_uri() . '/css/infertility-testing.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/infertility-testing.css')
+        );
+    }
+            // General Infertility Treatment page CSS
+    if (is_page('general-infertility-treatment')) {
+        wp_enqueue_style(
+            'mytheme-general-infertility-style',
+            get_stylesheet_directory_uri() . '/css/general-infertility-treatment.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/general-infertility-treatment.css')
+        );
+    }
+        // Other Treatments and Examinations page CSS
+    if (is_page('other-treatments-and-examinations')) {
+        wp_enqueue_style(
+            'mytheme-other-treatments-style',
+            get_stylesheet_directory_uri() . '/css/other-treatments-and-examinations.css',
+            ['mytheme-style'],
+            filemtime(get_stylesheet_directory() . '/css/other-treatments-and-examinations.css')
+        );
+    }
+
+
+
+
 }
 add_action('wp_enqueue_scripts', 'mytheme_assets');
 
 
 // -------------------------
-// CUSTOM POST TYPE: DOCTORS
+// CUSTOM POST TYPE: DOCTORS (Changed from Products)
 // -------------------------
 function mytheme_register_doctors() {
     register_post_type('doctor', [
@@ -110,15 +176,14 @@ function mytheme_register_doctors() {
         ],
         'public' => true,
         'has_archive' => true,
-        'menu_icon' => 'dashicons-businessman',
+        'menu_icon' => 'dashicons-businessman', // Changed to professional icon
         'supports' => ['title', 'editor', 'thumbnail']
     ]);
 }
 add_action('init', 'mytheme_register_doctors');
 
-
 // -------------------------
-// DOCTOR META BOXES
+// DOCTOR META BOXES (Changed from Product Meta)
 // -------------------------
 function mytheme_doctor_meta() {
     add_meta_box('doctor_details', 'Doctor Profile Details', 'mytheme_doctor_meta_callback', 'doctor');
@@ -154,10 +219,6 @@ function mytheme_save_doctor_meta($post_id) {
 }
 add_action('save_post', 'mytheme_save_doctor_meta');
 
-
-// -------------------------
-// ALLOW SVG UPLOADS
-// -------------------------
 function custom_mime_types($mimes) {
     $mimes['svg'] = 'image/svg+xml';
     return $mimes;
@@ -165,43 +226,39 @@ function custom_mime_types($mimes) {
 add_filter('upload_mimes', 'custom_mime_types');
 
 
-// -------------------------
-// DOCTOR BOOKING AJAX HANDLER
-// -------------------------
-add_action('wp_ajax_ohana_book_slot', 'ohana_book_slot');
-add_action('wp_ajax_nopriv_ohana_book_slot', 'ohana_book_slot');
+add_action('wp_ajax_ohana_book_slot','ohana_book_slot');
+add_action('wp_ajax_nopriv_ohana_book_slot','ohana_book_slot');
 
-function ohana_book_slot() {
+function ohana_book_slot(){
     $doctor_id = intval($_POST['doctor_id'] ?? 0);
-    $date      = sanitize_text_field($_POST['date'] ?? '');
-    $start     = sanitize_text_field($_POST['start'] ?? '');
-    $end       = sanitize_text_field($_POST['end'] ?? '');
-    $type      = sanitize_text_field($_POST['type'] ?? '');
-    $people    = intval($_POST['people'] ?? 1);
+    $date = sanitize_text_field($_POST['date'] ?? '');
+    $start = sanitize_text_field($_POST['start'] ?? '');
+    $end = sanitize_text_field($_POST['end'] ?? '');
+    $type = sanitize_text_field($_POST['type'] ?? '');
+    $people = intval($_POST['people'] ?? 1);
 
-    // Validate required fields
-    if (!$doctor_id || !$date || !$start || !$end) {
-        wp_send_json(['success' => false, 'message' => 'Invalid data']);
+    if(!$doctor_id || !$date || !$start || !$end){
+        wp_send_json(['success'=>false,'message'=>'Invalid data']);
     }
 
-    // Save booking as a custom post type
+    // Save as a custom post type 'doctor_booking' or post meta
     $booking_id = wp_insert_post([
-        'post_title'  => "Booking: $date $start-$end",
-        'post_type'   => 'doctor_booking',
+        'post_title' => "Booking: $date $start-$end",
+        'post_type' => 'doctor_booking',
         'post_status' => 'publish',
-        'meta_input'  => [
+        'meta_input' => [
             'doctor_id' => $doctor_id,
-            'date'      => $date,
-            'start'     => $start,
-            'end'       => $end,
-            'type'      => $type,
-            'people'    => $people,
+            'date' => $date,
+            'start' => $start,
+            'end' => $end,
+            'type' => $type,
+            'people' => $people,
         ]
     ]);
 
-    if ($booking_id) {
-        wp_send_json(['success' => true, 'message' => 'Booking confirmed!']);
+    if($booking_id){
+        wp_send_json(['success'=>true,'message'=>'Booking confirmed!']);
     } else {
-        wp_send_json(['success' => false, 'message' => 'Booking failed']);
+        wp_send_json(['success'=>false,'message'=>'Booking failed']);
     }
 }

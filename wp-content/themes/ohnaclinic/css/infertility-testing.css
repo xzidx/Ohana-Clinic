@@ -1,0 +1,140 @@
+.more-space {
+    height: 100px;
+}
+
+:root {
+    --primary-color: #00ddff;
+    --text-color: #554a41;
+    --bg-color: #ffffff;
+    --accent-gold: #e6b88a;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    /* padding: 40px 20px; */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.divider {
+    width: 60px;
+    height: 2px;
+    background-color: var(--accent-gold);
+    margin: 0 auto 40px auto;
+}
+
+.info-section {
+    margin-bottom: 80px;
+}
+
+/* List Styling */
+.diamond-list {
+    list-style: none;
+    padding: 0;
+}
+
+.diamond-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+}
+
+.diamond-list li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: var(--accent-gold);
+    font-size: 0.8rem;
+}
+
+/* Stats Styling */
+.stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.stat-item {
+    background: #f9f9f9;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.stat-item span {
+    font-weight: bold;
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Simple Mock Pie Chart */
+.chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.pie-chart-mock {
+    width: 250px;
+    height: 250px;
+    background: conic-gradient(var(--primary-color) 65%, #ff6b81 65% 72%, #ffa502 72% 81%, #70a1ff 81% 85%, #2ed573 85%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.main-slice {
+    background: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.legend ul {
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.source-footer {
+    border-top: 1px solid #eee;
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.75rem;
+    color: #999;
+}

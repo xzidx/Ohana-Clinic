@@ -1,0 +1,90 @@
+/* Custom Styling for Fertility Information Pages */
+:root {
+    --primary-color: #00ddff; /* Your Requested Color */
+    --accent-gold: #e6b88a;
+    --text-dark: #4a3a2e;
+}
+
+.more-space {
+    height: 80px;
+}
+
+.info-section {
+    max-width: 900px;
+    margin: 0 auto 100px auto;
+    padding: 0 20px;
+    font-family: 'Lato', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    letter-spacing: 0.15em;
+    text-transform: lowercase; /* Matches the style in screenshots */
+    margin-bottom: 10px;
+}
+
+.divider {
+    width: 60px;
+    height: 1px;
+    background-color: var(--accent-gold);
+    margin: 0 auto 40px auto;
+}
+
+.content-block p {
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+    text-align: left;
+}
+
+/* Price List Table */
+.table-container {
+    margin-top: 40px;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--text-dark);
+}
+
+.price-table td {
+    border: 1px solid var(--text-dark);
+    padding: 18px 30px;
+    vertical-align: middle;
+}
+
+.price-table td:first-child {
+    font-weight: bold;
+    text-align: center;
+    width: 55%;
+    font-size: 0.95rem;
+}
+
+.price-table td.price {
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+}
+
+.price-table td.price span {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    margin-left: 8px;
+}
+
+.highlight-price {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-title { font-size: 1.8rem; }
+    .price-table td { padding: 12px 15px; }
+    .price-table td.price { font-size: 1.1rem; }
+}

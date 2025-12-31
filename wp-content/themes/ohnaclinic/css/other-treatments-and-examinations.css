@@ -1,0 +1,185 @@
+.more-space {
+    height: 100px;
+}
+/* --- Global Styles & Variables --- */
+:root {
+    --main-cyan: #00ddff;      /* Your Brand Color */
+    --accent-gold: #e6b88a;    /* Title underlining and dividers */
+    --text-brown: #4a3a2e;     /* Primary text color from images */
+    --bg-light: #fdfaf5;       /* Table header background */
+    --soft-pink: #62dff0;      /* Target patients alert box */
+    --border-color: #4a3a2e;   /* Dark table borders */
+}
+
+body {
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-brown);
+    line-height: 1.8;
+    background-color: #fff;
+}
+
+.more-space { height: 60px; }
+
+/* --- Typography & Headers --- */
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    text-transform: lowercase;
+}
+
+.divider {
+    width: 50px;
+    height: 1px;
+    background-color: var(--accent-gold);
+    margin: 0 auto 50px auto;
+}
+
+.sub-heading {
+    font-size: 1.4rem;
+    border-bottom: 1px solid var(--accent-gold);
+    display: inline-block;
+    padding-bottom: 4px;
+    margin: 40px 0 20px 0;
+}
+
+/* --- Content Blocks & Lists --- */
+.info-section {
+    max-width: 900px;
+    margin: 0 auto 80px auto;
+    padding: 0 20px;
+}
+
+.diamond-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.diamond-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+}
+
+.diamond-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--accent-gold);
+    font-size: 0.8rem;
+}
+
+/* --- Specialized Boxes --- */
+.target-box {
+    margin: 30px 0;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.pink-label {
+    background-color: var(--soft-pink);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.method-box {
+    margin-top: 25px;
+}
+
+.method-box .label {
+    display: inline-block;
+    border: 1px solid var(--accent-gold);
+    padding: 2px 12px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+/* --- Tables (Price Lists) --- */
+.table-container { margin-top: 30px; }
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color);
+}
+
+.price-table td {
+    border: 1px solid var(--border-color);
+    padding: 15px 20px;
+    vertical-align: middle;
+}
+
+.price-table td:first-child {
+    background-color: #fff;
+    width: 50%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.price-table .price {
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    width: 30%;
+}
+
+.gender-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--main-cyan);
+    display: inline-block;
+    margin-bottom: 15px;
+    padding-right: 40px;
+}
+
+/* --- Statistics & Pie Chart --- */
+.stats-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+.stat-item {
+    border-left: 3px solid var(--main-cyan);
+    padding: 5px 15px;
+    background: #f9f9f9;
+}
+
+.pie-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+/* This creates a CSS pie chart based on your second image data */
+.pie-chart {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--main-cyan) 0% 65.1%,        /* Unknown Cause */
+        #6be4ff 65.1% 72.4%,             /* Uterine Abnormality */
+        #feca57 72.4% 81.9%,             /* Thyroid */
+        #54a0ff 81.9% 85.6%,             /* Chromosomal */
+        #1dd1a1 85.6% 94.3%,             /* Antiphospholipid */
+        #bdc3c7 94.3% 100%               /* Protein S deficiency */
+    );
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .main-title { font-size: 1.8rem; }
+    .price-table td { padding: 10px; font-size: 0.9rem; }
+    .price-table .price { font-size: 1.1rem; }
+}
